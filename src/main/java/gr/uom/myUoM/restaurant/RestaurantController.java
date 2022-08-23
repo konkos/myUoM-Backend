@@ -29,4 +29,8 @@ public class RestaurantController {
         return restaurantService.addMeal(restaurantDTO);
     }
 
+    @DeleteMapping("/{day}")
+    public void deleteMealByDay(@PathVariable String day) {
+        restaurantService.deleteMealByDay(day);
+    }
 }

@@ -1,10 +1,12 @@
 package gr.uom.myUoM.restaurant;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
@@ -23,11 +25,14 @@ public class RestaurantService {
 
     public Restaurant addMeal(RestaurantDTO restaurantDTO) {
         String day = restaurantDTO.getDay();
+
         String deipnoEidiko = restaurantDTO.getDeipnoEidiko();
         String deipnoEpidorpio = restaurantDTO.getDeipnoEpidorpio();
         String deipnoGarnitoura = restaurantDTO.getDeipnoGarnitoura();
         List<String> deipnoKirios = restaurantDTO.getDeipnoKirios();
         String deipnoSalata = restaurantDTO.getDeipnoSalata();
+
+        Dinner dinner = new Dinner(deipnoKirios, deipnoEidiko, deipnoGarnitoura, deipnoSalata, deipnoEpidorpio);
 
         String gevmaEpidorpio = restaurantDTO.getGevmaEpidorpio();
         String gevmaGarnitoura = restaurantDTO.getGevmaGarnitoura();
@@ -35,8 +40,15 @@ public class RestaurantService {
         String gevmaSalata = restaurantDTO.getGevmaSalata();
         String gevmaEidiko = restaurantDTO.getGevmaEidiko();
 
-        Restaurant restaurant = new Restaurant(day, gevmaKirios, gevmaEidiko, gevmaGarnitoura, gevmaSalata, gevmaEpidorpio, deipnoKirios, deipnoEidiko, deipnoGarnitoura, deipnoSalata, deipnoEpidorpio);
+        Lunch lunch = new Lunch(gevmaKirios, gevmaEidiko, gevmaGarnitoura, gevmaSalata, gevmaEpidorpio);
+
+        Restaurant restaurant = new Restaurant(day, lunch, dinner);
+
         restaurantRepository.save(restaurant);
         return restaurantRepository.findByDay(day);
+    }
+
+    public void deleteMealByDay(String day) {
+        restaurantRepository.deleteByDay(day);
     }
 }
