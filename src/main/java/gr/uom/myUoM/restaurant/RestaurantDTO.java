@@ -1,7 +1,12 @@
 package gr.uom.myUoM.restaurant;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class RestaurantDTO {
 
     private String day;
@@ -15,20 +20,6 @@ public class RestaurantDTO {
     private String deipnoGarnitoura;
     private String deipnoSalata;
     private String deipnoEpidorpio;
-
-    public RestaurantDTO(String day, List<String> gevmaKirios, String gevmaEidiko, String gevmaGarnitoura, String gevmaSalata, String gevmaEpidorpio, List<String> deipnoKirios, String deipnoEidiko, String deipnoGarnitoura, String deipnoSalata, String deipnoEpidorpio) {
-        this.day = day;
-        this.gevmaKirios = gevmaKirios;
-        this.gevmaEidiko = gevmaEidiko;
-        this.gevmaGarnitoura = gevmaGarnitoura;
-        this.gevmaSalata = gevmaSalata;
-        this.gevmaEpidorpio = gevmaEpidorpio;
-        this.deipnoKirios = deipnoKirios;
-        this.deipnoEidiko = deipnoEidiko;
-        this.deipnoGarnitoura = deipnoGarnitoura;
-        this.deipnoSalata = deipnoSalata;
-        this.deipnoEpidorpio = deipnoEpidorpio;
-    }
 
     public String getDay() {
         return day;

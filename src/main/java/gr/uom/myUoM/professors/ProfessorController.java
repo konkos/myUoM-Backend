@@ -14,9 +14,9 @@ public class ProfessorController {
         this.professorService = professorService;
     }
 
-    @GetMapping("/all")
-    public List<Professor> getAllProfessors() {
-        return professorService.getAllProfessors();
+    @GetMapping("/all/{page}")
+    public List<Professor> getAllProfessors(int page) {
+        return professorService.getAllProfessors(page);
     }
 
     @GetMapping
@@ -29,4 +29,8 @@ public class ProfessorController {
         return professorService.addProfessor(professorDTO);
     }
 
+    @PostMapping("/list")
+    public List<Professor> addManyProfessors(@RequestBody List<ProfessorDTO> professors) {
+        return professorService.addManyProfessors(professors);
+    }
 }

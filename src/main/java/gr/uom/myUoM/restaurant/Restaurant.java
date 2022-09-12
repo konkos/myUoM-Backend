@@ -1,11 +1,14 @@
 package gr.uom.myUoM.restaurant;
 
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 
 @Entity
 @Table(name = "restaurant")
+@NoArgsConstructor
 public class Restaurant {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,9 +21,6 @@ public class Restaurant {
 
     @Embedded
     private Dinner dinner;
-
-    public Restaurant() {
-    }
 
     public Restaurant(Long id, String day, Lunch lunch, Dinner dinner) {
         this.id = id;
